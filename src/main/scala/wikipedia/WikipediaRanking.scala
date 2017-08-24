@@ -20,7 +20,9 @@ object WikipediaRanking {
     "JavaScript", "Java", "PHP", "Python", "C#", "C++", "Ruby", "CSS",
     "Objective-C", "Perl", "Scala", "Haskell", "MATLAB", "Clojure", "Groovy")
 
-  val conf: SparkConf = new SparkConf().setMaster("local[12]").setAppName("WikiBigData")
+  //spark.executor.memory 	1g 	Amount of memory to use per executor process (e.g. 2g, 8g).
+
+  val conf: SparkConf = new SparkConf().setMaster("local[*]").setAppName("WikiBigData")
   val sc: SparkContext = new SparkContext(conf)
   // Hint: use a combination of `sc.textFile`, `WikipediaData.filePath` and `WikipediaData.parse`
   val wikiRdd: RDD[WikipediaArticle] = sc.textFile(WikipediaData.filePath).map(WikipediaData.parse)
